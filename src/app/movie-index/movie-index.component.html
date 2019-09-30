@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <div *ngFor="let movie of movies" class="col-md-6">
+      <div class="row">
+        <div class="col-md-6" style="padding-bottom: 6%;">
+          <a href="/films/1/" style="text-decoration : none; color : #000;">
+            <p style="font-size: 18px;">{{movie.title}}</p>
+            <img src="{{movie.image}}" class="img-fluid" alt="Responsive image" style="height: 450px;
+          ">
+          </a>
+        </div>
+        <div class="col-md-6" style="padding-bottom: 6%;">
+          <a href="/films/1/ " style="text-decoration : none; color : #000;">
+            <p style="text-align: justify;font-family: monospace;margin-top: 19%;">
+              {{movie.opening_crawl}}
+            </p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,2 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/dist/css/bootstrap.min.css';
+@font-face {
+    font-family: 'starwars';
+    src: url('/assets/font/starwars.eot'); /* IE9 Compat Modes */
+    src: url('/assets/font/starwars.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+        url('/assets/font/starwars.woff') format('woff'), /* Modern Browsers */
+        url('/assets/font/starwars.ttf')  format('truetype'), /* Safari, Android, iOS */
+        url('/assets/font/starwars.svg#starwars') format('svg'); /* Legacy iOS */
+}
+.container{
+  font-family: starwars;
+  padding-top: 4%;
+}
+h3{
+  text-align: center;
+}
+a {
+  text-decoration : none; color : #000;
+}
