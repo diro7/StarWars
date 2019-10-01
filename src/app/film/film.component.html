@@ -1,0 +1,60 @@
+<app-header></app-header>
+<div class="container">
+<div class="row">
+<div class="col-md">
+    <h2>{{ film.title }}</h2>
+  <p style="text-align: justify;font-family: monospace;">{{ film.opening_crawl }}</p>
+  <h4>Ficha tecnica</h4>
+  <table class="table table-bordered">
+    <tbody>
+      <tr>
+        <td>Director</td>
+        <td>{{film.director}}</td>
+      </tr>
+      <tr>
+        <td>Producer</td>
+        <td>{{film.producer}}</td>
+      </tr>
+      <tr>
+    </tbody>
+  </table>
+  <p>Ver todos los Personajes <i class="fa fa-external-link" aria-hidden="true"> </i> </p>
+  <div class="row">
+    <div class="col-md">
+      <img
+        src="http://jedibusiness.com/images/actionFigures/6inch-The-Black-Series-3/Luke-Skywalker-Farmboy-40th_Big_6.jpg"
+        class="img-fluid" alt="Responsive image" style="
+    height: 200px;
+">
+      Luke Skywalker
+    </div>
+    <div class="col-md">
+      <img src="https://images-na.ssl-images-amazon.com/images/I/71LFpKcZjGL._SY879_.jpg" class="img-fluid"
+        alt="Responsive image" style="
+    width:230px;height: 200px;
+">
+      C-3PO
+    </div>
+    <div class="col-md">
+      <a href="/character/3" style="text-decoration : none; color : #000;">
+        <img src="https://images-na.ssl-images-amazon.com/images/I/91BLCCISDTL._SY355_.jpg" class="img-fluid"
+          alt="Responsive image" style="
+    height: 200px;
+">
+
+        R2-D2
+      </a>
+    </div>
+  </div>
+
+</div>
+<div class="col-md">
+  <a href="/films/{{film.url}}" style="text-decoration : none; color : #000;">
+    <img
+      src="{{film.image}}"
+      class="img-fluid" alt="Responsive image">
+  </a>
+
+</div>
+</div>
+</div>
