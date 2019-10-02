@@ -11,10 +11,21 @@ import { HeaderComponent } from './header/header.component';
 import { SwapiService } from './swapi.service';
 import { IndexComponent } from './index/index.component';
 import { FilmComponent } from './film/film.component';
+import { CharactersComponent } from './characters/characters.component';
+import { PlanetsComponent } from './planets/planets.component';
+import { StarshipsComponent } from './starships/starships.component';
+import { VehiclesComponent } from './vehicles/vehicles.component';
+import { SpeciesComponent } from './species/species.component';
 
 const routes: Routes = [
   { path: '', component: IndexComponent },
-  { path: 'films/:id', component: FilmComponent }
+  { path: 'films/:id', component: FilmComponent },
+  { path: 'characters', component: CharactersComponent },
+  { path: 'starships', component: StarshipsComponent },
+  { path: 'species', component: SpeciesComponent },
+  { path: 'vehicles', component: VehiclesComponent },
+  { path: 'planets', component: PlanetsComponent },
+
 ]
 
 @NgModule({
@@ -23,7 +34,12 @@ const routes: Routes = [
     MovieIndexComponent,
     HeaderComponent,
     IndexComponent,
-    FilmComponent
+    FilmComponent,
+    CharactersComponent,
+    PlanetsComponent,
+    StarshipsComponent,
+    VehiclesComponent,
+    SpeciesComponent
   ],
   imports: [
     BrowserModule,

@@ -10,6 +10,8 @@ import { Replace } from "../Replace"
 })
 export class FilmComponent implements OnInit {
   film:any = [];
+  planets:any = [];
+  characters:any = [];
   id = "0";
   images = {
     'Attack of the Clones': 'https://images-na.ssl-images-amazon.com/images/S/cmx-images-prod/Item/271253/271253._SX1600_QL80_TTD_.jpg',
@@ -32,7 +34,18 @@ export class FilmComponent implements OnInit {
       this.film = data;
       this.film = Replace.format(this.film, "https://swapi.co/api/", "", true, true);
       this.film.image = this.images[this.film.title]
-      console.log(this.film);
+      for (var key in this.film.planets) {
+        this.swapiService.getPlanet(this.film.planets[key]).subscribe(data => {
+          this.planets.push(data)
+        });
+      }
+      for (var key in this.film.characters) {
+        this.swapiService.getCharacter(this.film.characters[key]).subscribe(data => {
+          this.characters.push(data)
+        });
+      }
+
+      console.log(this.film)
     });
   }
 

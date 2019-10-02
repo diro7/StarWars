@@ -1,0 +1,33 @@
+<app-header></app-header>
+<div class="container">
+    <div class="row">
+      <div *ngFor="let vehicle of vehicles" class="col-md-6">
+        <div class="row">
+          <div class="col-md-6" style="padding-bottom: 6%;">
+            <a routerLink="#" style="text-decoration : none; color : #000;">
+              <p style="font-size: 18px;">{{vehicle.name}}</p>
+              <img src="https://freeaddon.com/wp-content/uploads/2017/10/star-wars-vehicless-9.jpg" class="img-fluid" alt="Responsive image" >
+            </a>
+          </div>
+          <div class="col-md-6" style="padding-bottom: 6%;">
+            <table class="table table-bordered">
+                <tbody>
+                  <tr>
+                    <td>cargo_capacity</td>
+                    <td>{{vehicle.cargo_capacity}}</td>
+                  </tr>
+                  <tr>
+                    <td>manufacturer</td>
+                    <td>{{vehicle.manufacturer}}</td>
+                  </tr>
+                  <tr>
+                    <td>model</td>
+                    <td>{{vehicle.model}}</td>
+                  </tr>
+                </tbody>
+              </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
