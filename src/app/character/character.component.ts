@@ -1,16 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 import { SwapiService } from "../swapi.service";
 import { Router, ActivatedRoute, ParamMap } from "@angular/router";
 import { Replace } from "../Replace"
 
 @Component({
-  selector: 'app-characters',
-  templateUrl: './characters.component.html',
-  styleUrls: ['./characters.component.css']
+  selector: 'app-character',
+  templateUrl: './character.component.html',
+  styleUrls: ['./character.component.css']
 })
-export class CharactersComponent implements OnInit {
-
-  characters:any = [];
+export class CharacterComponent implements OnInit {
+  character:any = [];
+  vehicles:any = [];
+  films:any = [];
+  starships:any = [];
+  api = "https://swapi.co/api/";
+  id = "0";
   images = {
     'Luke Skywalker': 'https://img-cdn.hipertextual.com/files/2018/12/lukeskywalkersableluzstarwarsafkad-454a516bfb5e4a16c018f6b9ec3ec302-1200x600.jpg?strip=all&lossy=1&quality=57&resize=740%2C490&ssl=1',
     'C-3PO': 'https://fsmedia.imgix.net/2c/a4/ca/4f/f3e4/4e12/8879/80557aaa2bba/star-wars-9-leaks-c3po.jpeg?crop=edges&fit=crop&auto=format%2Ccompress&dpr=2&h=325&w=650',
@@ -24,24 +28,37 @@ export class CharactersComponent implements OnInit {
     'Darth Vader': 'https://lumiere-a.akamaihd.net/v1/images/Darth-Vader_6bda9114.jpeg?region=0%2C23%2C1400%2C785&width=960',
   }
 
+
   constructor(
     private swapiService: SwapiService,
     private route: ActivatedRoute,
     private router: Router,
     private service: SwapiService
   ) {
-    this.swapiService.getCharacters().subscribe(data => {
-      this.characters = data['results'];
-
-      for (var key in this.characters) {
-        this.characters[key] = Replace.format(this.characters[key], "https://swapi.co/api", "", true, true);
-        this.characters[key].image = this.images[this.characters[key].name]
+    this.id = this.route.snapshot.paramMap.get("id");
+    this.swapiService.getCharacter('people/' + this.id).subscribe(data => {
+      this.character = data;
+      this.character = Replace.format(this.character, "https://swapi.co/api/", "", true, true);
+      this.character.image = this.images[this.character.name]
+      for (var key in this.character.films) {
+        this.swapiService.getFilm(this.character.films[key]).subscribe(data => {
+          this.films.push(Replace.format(data, this.api, "", true, true))
+        });
       }
-      console.log(this.characters)
+      for (var key in this.character.vehicles) {
+        this.swapiService.getVehicle(this.character.vehicles[key]).subscribe(data => {
+          this.vehicles.push(Replace.format(data, this.api, "", true, true))
+        });
+      }
+      for (var key in this.character.starships) {
+        this.swapiService.getStarship(this.character.starships[key]).subscribe(data => {
+          this.starships.push(Replace.format(data, this.api, "", true, true))
+        });
+      }
+
+      console.log(this.films)
     });
   }
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

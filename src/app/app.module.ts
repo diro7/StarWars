@@ -16,16 +16,18 @@ import { PlanetsComponent } from './planets/planets.component';
 import { StarshipsComponent } from './starships/starships.component';
 import { VehiclesComponent } from './vehicles/vehicles.component';
 import { SpeciesComponent } from './species/species.component';
+import { CharacterComponent } from './character/character.component';
 
 const routes: Routes = [
   { path: '', component: IndexComponent },
   { path: 'films/:id', component: FilmComponent },
-  { path: 'characters', component: CharactersComponent },
+
   { path: 'starships', component: StarshipsComponent },
   { path: 'species', component: SpeciesComponent },
   { path: 'vehicles', component: VehiclesComponent },
   { path: 'planets', component: PlanetsComponent },
-
+  { path: 'characters', component: CharactersComponent },
+  { path: 'people/:id', component: CharacterComponent },
 ]
 
 @NgModule({
@@ -39,7 +41,8 @@ const routes: Routes = [
     PlanetsComponent,
     StarshipsComponent,
     VehiclesComponent,
-    SpeciesComponent
+    SpeciesComponent,
+    CharacterComponent
   ],
   imports: [
     BrowserModule,

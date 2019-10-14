@@ -1,0 +1,81 @@
+<app-header></app-header>
+<div class="container">
+  <div class="row">
+    <div class="col-md">
+      <h4>Ficha tecnica</h4>
+      <hr>
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <td>Nombre</td>
+            <td>{{character.name}}</td>
+          </tr>
+          <tr>
+            <td>Genero</td>
+            <td>{{character.gender}}</td>
+          </tr>
+          <tr>
+            <td>Color de ojos</td>
+            <td>{{character.eye_color}}</td>
+          </tr>
+          <tr>
+          <tr>
+            <td>Altura</td>
+            <td>{{character.height}}</td>
+          </tr>
+          <tr>
+          <tr>
+            <td>Año de nacimiento</td>
+            <td>{{character.birth_year}}</td>
+          </tr>
+          <tr>
+            <td>Peliculas</td>
+            <td>
+              <ul>
+                <li *ngFor="let film of films">
+                  <a routerLink="/{{film.url}}">
+                    {{film.title}}
+                  </a>
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr *ngIf="vehicles.length > 0 ">
+            <td>Vehiculos</td>
+            <td>
+              <ul>
+                <li *ngFor="let vehicle of vehicles">
+                  <a routerLink="/{{vehicle.url}}">
+                    {{vehicle.name}}
+                  </a>
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr *ngIf="starships.length > 0 ">
+            <td>Starships</td>
+            <td>
+              <ul>
+                <li *ngFor="let starship of starships">
+                  <a routerLink="/{{starship.url}}">
+                    {{starship.name}}
+                  </a>
+                </li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+    <div class="col-md" *ngIf="character else loading">
+      <a routerLink="/{{character.url}}" style="text-decoration : none; color : #000;">
+        <h2>{{ character.name }}</h2>
+        <p style="text-align: justify;font-family: monospace;">{{ character.opening_crawl }}</p>
+        <img src="{{character.image}}" class="img-fluid" alt="Responsive image">
+      </a>
+
+    </div>
+  </div>
+</div>
+<ng-template #loading></ng-template>
