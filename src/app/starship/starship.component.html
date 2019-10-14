@@ -1,0 +1,74 @@
+<app-header></app-header>
+<div class="container">
+    <div class="row">
+        <div class="col-md">
+            <h4>Ficha tecnica</h4>
+            <hr>
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <td>Nombre</td>
+                        <td>{{starship.name}}</td>
+                    </tr>
+                    <tr>
+                        <td>Model</td>
+                        <td>{{starship.model}}</td>
+                    </tr>
+                    <tr>
+                        <td>Clase de vehiculo</td>
+                        <td>{{starship.starship_class}}</td>
+                    </tr>
+                    <tr>
+                        <td>Clase de vehiculo</td>
+                        <td>{{starship.starship_class}}</td>
+                    </tr>
+                    <tr>
+                        <td>Capacidad de carga</td>
+                        <td>{{starship.cargo_capacity}}</td>
+                    </tr>
+                    <tr>
+                        <tr>
+                            <td>Longitud</td>
+                            <td>{{starship.length}}</td>
+                        </tr>
+                        <tr>
+                            <td>Peliculas</td>
+                            <td>
+                                <ul>
+                                    <li *ngFor="let film of films">
+                                        <a routerLink="/{{film.url}}">
+                                                {{film.title}}
+                                            </a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr *ngIf="pilots.length > 0 ">
+                            <td>Pilotos</td>
+                            <td>
+                                <ul>
+                                    <li *ngFor="let pilot of pilots">
+                                        <a routerLink="/{{pilot.url}}">
+                                                {{pilot.name}}
+                                            </a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <div class="col-md" *ngIf="starship else loading">
+            <a routerLink="/{{starship.url}}" style="text-decoration : none; color : #000;">
+                <h2>{{ starship.name }}</h2>
+                <p style="text-align: justify;font-family: monospace;">{{ starship.opening_crawl }}</p>
+
+                <img *ngIf="starship.image" src="{{starship.image}}" class="img-fluid">
+                <img *ngIf="!starship.image" src="https://i.ytimg.com/vi/gnxd3t6iUiM/maxresdefault.jpg" class="img-fluid">
+            </a>
+
+        </div>
+    </div>
+</div>
+<ng-template #loading></ng-template>

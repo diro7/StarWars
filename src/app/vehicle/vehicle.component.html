@@ -1,0 +1,74 @@
+<app-header></app-header>
+<div class="container">
+    <div class="row">
+        <div class="col-md">
+            <h4>Ficha tecnica</h4>
+            <hr>
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <td>Nombre</td>
+                        <td>{{vehicle.name}}</td>
+                    </tr>
+                    <tr>
+                        <td>Model</td>
+                        <td>{{vehicle.model}}</td>
+                    </tr>
+                    <tr>
+                        <td>Clase de vehiculo</td>
+                        <td>{{vehicle.vehicle_class}}</td>
+                    </tr>
+                    <tr>
+                        <td>Clase de vehiculo</td>
+                        <td>{{vehicle.vehicle_class}}</td>
+                    </tr>
+                    <tr>
+                        <td>Capacidad de carga</td>
+                        <td>{{vehicle.cargo_capacity}}</td>
+                    </tr>
+                    <tr>
+                        <tr>
+                            <td>Longitud</td>
+                            <td>{{vehicle.length}}</td>
+                        </tr>
+                        <tr>
+                            <td>Peliculas</td>
+                            <td>
+                                <ul>
+                                    <li *ngFor="let film of films">
+                                        <a routerLink="/{{film.url}}">
+                                                {{film.title}}
+                                            </a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Pilotos</td>
+                            <td>
+                                <ul>
+                                    <li *ngFor="let pilot of pilots">
+                                        <a routerLink="/{{pilot.url}}">
+                                                {{pilot.name}}
+                                            </a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <div class="col-md" *ngIf="vehicle else loading">
+            <a routerLink="/{{vehicle.url}}" style="text-decoration : none; color : #000;">
+                <h2>{{ vehicle.name }}</h2>
+                <p style="text-align: justify;font-family: monospace;">{{ vehicle.opening_crawl }}</p>
+
+                <img *ngIf="vehicle.image" src="{{vehicle.image}}" class="img-fluid">
+                <img *ngIf="!vehicle.image" src="https://cdn.dribbble.com/users/37531/screenshots/1726263/star-wars-loader.gif" class="img-fluid">
+            </a>
+
+        </div>
+    </div>
+</div>
+<ng-template #loading></ng-template>

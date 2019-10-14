@@ -1,18 +1,19 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Films } from './Films'
 import { Film } from './Film'
 import { Observable, of } from 'rxjs';
-import { tap, map }from 'rxjs/operators'
+import { tap, map } from 'rxjs/operators'
 import { Planet } from './Planet';
 import { Characters } from './Characters';
 import { Planets } from './Planets';
 import { Starships } from './Starships';
 import { Vehicles } from './Vehicles';
 import { Species } from './Species';
+import { environment } from 'src/environments/environment.prod';
 
 
-export const UserMock = [{a:1}];
+export const UserMock = [{ a: 1 }];
 @Injectable({
   providedIn: 'root'
 })
@@ -20,7 +21,7 @@ export class SwapiService {
   constructor(private http: HttpClient) {
   }
 
-  public getFilsm(){
+  public getFilsm() {
     return this.http.get<Films[]>('https://swapi.co/api/films')
   }
 
@@ -40,38 +41,44 @@ export class SwapiService {
   //  );
   //}
 
-  public getPlanet(url): Observable<Planet[]>{
+  public getPlanet(url): Observable<Planet[]> {
     return this.http.get<Planet[]>('https://swapi.co/api/' + url)
   }
 
-  public getCharacter(url): Observable<Characters[]>{
+  public getCharacter(url): Observable<Characters[]> {
     return this.http.get<Characters[]>('https://swapi.co/api/' + url)
   }
 
-  public getCharacters(): Observable<Characters[]>{
+  public getCharacters(): Observable<Characters[]> {
     return this.http.get<Characters[]>('https://swapi.co/api/people')
   }
-  public getPlanets(): Observable<Planets[]>{
+  public getPlanets(): Observable<Planets[]> {
     return this.http.get<Planets[]>('https://swapi.co/api/planets')
   }
-  public getStarships(): Observable<Starships[]>{
+  public getStarships(): Observable<Starships[]> {
     return this.http.get<Starships[]>('https://swapi.co/api/starships')
   }
-  public getStarship(url): Observable<any[]>{
+  public getStarship(url): Observable<any[]> {
     return this.http.get<[]>('https://swapi.co/api/' + url)
   }
-  public getVehicles(): Observable<Vehicles[]>{
+  public getVehicles(): Observable<Vehicles[]> {
     return this.http.get<Vehicles[]>('https://swapi.co/api/vehicles')
   }
-  public getVehicle(url): Observable<any>{
+  public getVehicle(url): Observable<any> {
     return this.http.get<[]>('https://swapi.co/api/' + url)
   }
-  public getSpecies(): Observable<Species[]>{
+  public getSpecies(): Observable<Species[]> {
     return this.http.get<Species[]>('https://swapi.co/api/species')
   }
-  public getImage(url): Observable<any>{
-    return this.http.get<[]>(url)
+  public getSpecie(url): Observable<any> {
+    return this.http.get<[]>('https://swapi.co/api/' + url)
   }
-
-
+  public getImage(word): Observable<any[]>{
+    const url = "http://127.0.0.1:3000/"
+    const params = new HttpParams()
+      .set('q', word)
+    return this.http.get<[]>(url, { params }).pipe(
+      map((response:any) => response.url)
+    );
+  }
 }
