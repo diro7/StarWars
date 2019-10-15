@@ -27,7 +27,6 @@ export class StarshipComponent implements OnInit {
       this.swapiService.getImage(this.starship.name).subscribe(data => {
         this.starship.image = data
       });
-      console.log(this.starship)
       for (var key in this.starship.films) {
         this.swapiService.getFilm(this.starship.films[key]).subscribe(data => {
           this.films.push(Replace.format(data, this.api, "", true, true))
@@ -38,8 +37,6 @@ export class StarshipComponent implements OnInit {
           this.pilots.push(Replace.format(data, this.api, "", true, true))
         });
       }
-
-      console.log(this.starship)
     });
   }
 

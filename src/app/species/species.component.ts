@@ -11,7 +11,7 @@ import { Replace } from "../Replace"
 export class SpeciesComponent implements OnInit {
 
 
-  species:any = [];
+  species: any = [];
   images = {
     "Trandoshan": "https://lumiere-a.akamaihd.net/v1/images/databank_trandoshan_01_169_26a8a28f.jpeg?region=0%2C0%2C1560%2C878&width=960",
     "Ewok": "https://lumiere-a.akamaihd.net/v1/images/databank_ewok_01_169_747db03a.jpeg?region=0%2C0%2C1560%2C878&width=960",
@@ -23,7 +23,7 @@ export class SpeciesComponent implements OnInit {
     "Toydarian": "https://lumiere-a.akamaihd.net/v1/images/databank_toydarian_01_169_748d4d11.jpeg?region=0%2C0%2C1560%2C878&width=960",
     "Dug": "https://vignette.wikia.nocookie.net/es.starwars/images/2/2c/Dug_full_body.png/revision/latest?cb=20180108160945",
     "Hutt": "https://vignette.wikia.nocookie.net/es.starwars/images/7/72/HuttNEGAS.jpg/revision/latest?cb=20070227162036"
-}
+  }
 
   constructor(
     private swapiService: SwapiService,
@@ -34,17 +34,13 @@ export class SpeciesComponent implements OnInit {
       for (var key in this.species) {
         this.species[key] = Replace.format(this.species[key], "https://swapi.co/api", "", true, true);
         this.species[key].image = this.images[this.species[key].name]
-        console.log(this.species[key].name)
-        console.log(this.images[this.species[key].name])
 
-        if (typeof this.species[key].image === 'undefined'){
+        if (typeof this.species[key].image === 'undefined') {
           this.species[key].image = this.swapiService.getImage(this.species[key].name + "").subscribe(data => {
             this.species[key].image = data
-            console.log(data)
           });
         }
       }
-      console.log(this.species)
     });
 
 

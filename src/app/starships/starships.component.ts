@@ -34,17 +34,13 @@ export class StarshipsComponent implements OnInit {
       for (var key in this.starships) {
         this.starships[key] = Replace.format(this.starships[key], "https://swapi.co/api", "", true, true);
         this.starships[key].image = this.images[this.starships[key].name]
-        console.log(this.starships[key].name)
-        console.log(this.images[this.starships[key].name])
 
         if (typeof this.starships[key].image === 'undefined'){
           this.starships[key].image = this.swapiService.getImage(this.starships[key].name + "").subscribe(data => {
             this.starships[key].image = data
-            console.log(data)
           });
         }
       }
-      console.log(this.starships)
     });
 
 

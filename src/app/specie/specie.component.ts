@@ -28,7 +28,6 @@ export class SpecieComponent implements OnInit {
       this.swapiService.getImage(this.specie.name).subscribe(data => {
         this.specie.image = data
       });
-      console.log(this.specie)
 
       for (var key in this.specie.films) {
         this.swapiService.getFilm(this.specie.films[key]).subscribe(data => {
@@ -52,8 +51,6 @@ export class SpecieComponent implements OnInit {
         this.planets.push(Replace.format(data, this.api, "", true, true))
       });
     
-
-      console.log(this.planets)
     });
   }
 

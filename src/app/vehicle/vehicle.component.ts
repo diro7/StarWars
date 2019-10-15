@@ -9,9 +9,9 @@ import { Replace } from "../Replace"
   styleUrls: ['./vehicle.component.css']
 })
 export class VehicleComponent implements OnInit {
-  vehicle:any = [];
-  films:any = [];
-  pilots:any = [];
+  vehicle: any = [];
+  films: any = [];
+  pilots: any = [];
   api = "https://swapi.co/api/";
   id = "0";
 
@@ -26,7 +26,6 @@ export class VehicleComponent implements OnInit {
       this.swapiService.getImage(this.vehicle.name).subscribe(data => {
         this.vehicle.image = data
       });
-      console.log(this.vehicle)
       for (var key in this.vehicle.films) {
         this.swapiService.getFilm(this.vehicle.films[key]).subscribe(data => {
           this.films.push(Replace.format(data, this.api, "", true, true))
@@ -38,10 +37,9 @@ export class VehicleComponent implements OnInit {
         });
       }
 
-      console.log(this.films)
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
 }

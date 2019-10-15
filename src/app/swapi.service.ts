@@ -73,6 +73,13 @@ export class SwapiService {
   public getSpecie(url): Observable<any> {
     return this.http.get<[]>('https://swapi.co/api/' + url)
   }
+
+  public getSearch(url): Observable<any> {
+    return this.http.get<[]>('https://swapi.co/api/' + url).pipe(
+      map((response:any) => response.results)
+    );
+  }
+
   public getImage(word): Observable<any[]>{
     const url = "http://127.0.0.1:3000/"
     const params = new HttpParams()

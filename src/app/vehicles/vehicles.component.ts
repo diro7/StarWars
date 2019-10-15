@@ -11,7 +11,7 @@ import { Replace } from "../Replace"
 })
 export class VehiclesComponent implements OnInit {
 
-  vehicles:any = [];
+  vehicles: any = [];
   images = {
     "Snowspeeder": "https://lumiere-a.akamaihd.net/v1/images/snowspeeder_ef2f9334.jpeg?region=0%2C211%2C2048%2C1154&width=960",
     "TIE bomber": "https://lumiere-a.akamaihd.net/v1/images/tie-bomber-1-retina_d3ea46d8.jpeg?region=0%2C0%2C1200%2C675",
@@ -37,20 +37,15 @@ export class VehiclesComponent implements OnInit {
       for (var key in this.vehicles) {
         this.vehicles[key] = Replace.format(this.vehicles[key], "https://swapi.co/api", "", true, true);
         this.vehicles[key].image = this.images[this.vehicles[key].name]
-        console.log(this.vehicles[key].name)
-        console.log(this.images[this.vehicles[key].name])
-
-        if (typeof this.vehicles[key].image === 'undefined'){
+        if (typeof this.vehicles[key].image === 'undefined') {
           this.vehicles[key].image = this.swapiService.getImage(this.vehicles[key].name + "").subscribe(data => {
             this.vehicles[key].image = data
-            console.log(data)
           });
         }
       }
-      console.log(this.vehicles)
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
 }

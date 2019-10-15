@@ -1,0 +1,43 @@
+<app-header></app-header>
+
+<div class="container" style="padding-top: 0px;">
+    <h3 class="searchLabel">Buscar por</h3>
+    <hr>
+    <form [formGroup]="searchForm" (ngSubmit)="onSubmit(searchForm.value)">
+        <label>Categoria</label><br>
+        <div class="input-group">
+            <select formControlName="category" id="category" [(ngModel)]='nrSelect'>
+                <option value="films" selected>Peliculas</option>
+                <option value="people">Personajes</option>
+                <option value="starships">Starships</option>
+                <option value="species">Especies</option>
+                <option value="planets">Planetas</option>
+                <option value="vehicles">Vehiculos</option>
+            </select>
+            <input id="search" type="text" formControlName="search" class="form-control" value="a">
+
+            <!-- insert this line -->
+            <span class="input-group-addon" style="width:0px; padding-left:0px; padding-right:0px; border:none;"></span>
+
+
+        </div>
+        <button class="btn btn-primary" type="submit">Buscar</button>
+        <div class="container">
+            <div class="row">
+                <div *ngFor="let item of response" class="col-md-6">
+                    <div class="row">
+                        <div class="col-md" style="padding-bottom: 6%;">
+                            <a routerLink="/{{item.url}}" style="text-decoration : none; color : #000;">
+                                <p style="font-size: 18px;">{{item.name}}</p>
+                                <img src="{{item.image}}" class="img-fluid img-height">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </form>
+</div>
+<ng-template #loading></ng-template>

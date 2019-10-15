@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { RouterModule , Routes} from '@angular/router'
@@ -26,6 +27,7 @@ import { CharacterComponent } from './character/character.component';
 
 import { VehiclesComponent } from './vehicles/vehicles.component';
 import { VehicleComponent } from './vehicle/vehicle.component';
+import { SearchComponent } from './search/search.component';
 
 
 
@@ -48,6 +50,9 @@ const routes: Routes = [
 
   { path: 'characters', component: CharactersComponent },
   { path: 'people/:id', component: CharacterComponent },
+
+  { path: 'search', component: SearchComponent },
+  { path: 'search/:id', component: SearchComponent },
 ]
 
 @NgModule({
@@ -66,13 +71,16 @@ const routes: Routes = [
     VehicleComponent,
     SpecieComponent,
     PlanetComponent,
-    StarshipComponent
+    StarshipComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     SwapiService
