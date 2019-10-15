@@ -44,6 +44,7 @@ const routes: Routes = [
   { path: 'vehicles/:id', component: VehicleComponent },
 
   { path: 'planets', component: PlanetsComponent },
+  { path: 'planets/:id', component: PlanetComponent },
 
   { path: 'characters', component: CharactersComponent },
   { path: 'people/:id', component: CharacterComponent },

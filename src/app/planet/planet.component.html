@@ -1,1 +1,81 @@
-<p>planet works!</p>
+<app-header></app-header>
+<div class="container">
+    <div class="row">
+        <div class="col-md">
+            <h4>Ficha tecnica</h4>
+            <hr>
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <td>Nombre</td>
+                        <td>{{planet.name}}</td>
+                    </tr>
+                    <tr>
+                        <td>Clima</td>
+                        <td>{{planet.climate}}</td>
+                    </tr>
+                    <tr>
+                        <td>Diametro</td>
+                        <td>{{planet.diameter}}</td>
+                    </tr>
+                    <tr>
+                        <td>Gravedad</td>
+                        <td>{{planet.gravity}}</td>
+                    </tr>
+                    <tr>
+                        <td>Periodo orbital</td>
+                        <td>{{planet.orbital_period}}</td>
+                    </tr>
+                    <tr>
+                        <td>Periodo de rotacion</td>
+                        <td>{{planet.rotation_period}}</td>
+                    </tr>
+                    <tr>
+                        <td>Poblacion</td>
+                        <td>{{planet.population}}</td>
+                    </tr>
+                    <tr>
+                        <td>Terreno</td>
+                        <td>{{planet.terrain}}</td>
+                    </tr>
+                    <tr>
+                        <td>Peliculas</td>
+                        <td>
+                            <ul>
+                                <li *ngFor="let film of films">
+                                    <a routerLink="/{{film.url}}">
+                                                {{film.title}}
+                                            </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Residentes</td>
+                        <td>
+                            <ul>
+                                <li *ngFor="let resident of residents">
+                                    <a routerLink="/{{resident.url}}">
+                                                {{resident.name}}
+                                            </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <div class="col-md" *ngIf="planet else loading">
+            <a routerLink="/{{planet.url}}" style="text-decoration : none; color : #000;">
+                <h2>{{ planet.name }}</h2>
+                <p style="text-align: justify;font-family: monospace;">{{ planet.opening_crawl }}</p>
+
+                <img *ngIf="planet.image" src="{{planet.image}}" class="img-fluid">
+                <img *ngIf="!planet.image" src="https://i.ytimg.com/vi/gnxd3t6iUiM/maxresdefault.jpg" class="img-fluid">
+            </a>
+
+        </div>
+    </div>
+</div>
+<ng-template #loading></ng-template>

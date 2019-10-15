@@ -1,1 +1,85 @@
-<p>specie works!</p>
+<app-header></app-header>
+<div class="container">
+    <div class="row">
+        <div class="col-md">
+            <h4>Ficha tecnica</h4>
+            <hr>
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <td>Nombre</td>
+                        <td>{{specie.name}}</td>
+                    </tr>
+                    <tr>
+                        <td>Lenguaje</td>
+                        <td>{{specie.language}}</td>
+                    </tr>
+                    <tr>
+                        <td>Clasificacion</td>
+                        <td>{{specie.classification}}</td>
+                    </tr>
+                    <tr>
+                        <td>Designacion</td>
+                        <td>{{specie.designation}}</td>
+                    </tr>
+                    <tr>
+                        <td>Color de ojos</td>
+                        <td>{{specie.eye_colors}}</td>
+                    </tr>
+                    <tr>
+                        <td>Color de piel</td>
+                        <td>{{specie.skin_colors}}</td>
+                    </tr>
+                    <tr>
+                        <td>Peliculas</td>
+                        <td>
+                            <ul>
+                                <li *ngFor="let film of films">
+                                    <a routerLink="/{{film.url}}">
+                                                {{film.title}}
+                                            </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Planeta de Origen</td>
+                        <td>
+                            <ul>
+                                <li *ngFor="let planet of planets">
+                                    <a routerLink="/{{planet.url}}">
+                                                {{planet.name}}
+                                            </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Personajes</td>
+                        <td>
+                            <ul>
+                                <li *ngFor="let people_ of people">
+                                    <a routerLink="/{{people_.url}}">
+                                                {{people_.name}}
+                                            </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <div class="col-md" *ngIf="specie else loading">
+            <a routerLink="/{{specie.url}}" style="text-decoration : none; color : #000;">
+                <h2>{{ specie.name }}</h2>
+                <p style="text-align: justify;font-family: monospace;">{{ specie.opening_crawl }}</p>
+
+                <img *ngIf="specie.image" src="{{specie.image}}" class="img-fluid">
+                <img *ngIf="!specie.image" src="https://i.ytimg.com/vi/gnxd3t6iUiM/maxresdefault.jpg" class="img-fluid">
+            </a>
+
+        </div>
+    </div>
+</div>
+<ng-template #loading></ng-template>

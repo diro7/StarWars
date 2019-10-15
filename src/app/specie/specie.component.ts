@@ -12,7 +12,8 @@ export class SpecieComponent implements OnInit {
 
   specie:any = [];
   films:any = [];
-  pilots:any = [];
+  planets:any = [];
+  people:any = [];
   api = "https://swapi.co/api/";
   id = "0";
 
@@ -28,18 +29,31 @@ export class SpecieComponent implements OnInit {
         this.specie.image = data
       });
       console.log(this.specie)
+
       for (var key in this.specie.films) {
         this.swapiService.getFilm(this.specie.films[key]).subscribe(data => {
           this.films.push(Replace.format(data, this.api, "", true, true))
         });
       }
-      for (var key in this.specie.pilots) {
-        this.swapiService.getCharacter(this.specie.pilots[key]).subscribe(data => {
-          this.pilots.push(Replace.format(data, this.api, "", true, true))
+
+      for (var key in this.specie.people) {
+        this.swapiService.getCharacter(this.specie.people[key]).subscribe(data => {
+          this.people.push(Replace.format(data, this.api, "", true, true))
         });
       }
 
-      console.log(this.specie)
+      for (var key in this.specie.films) {
+        this.swapiService.getFilm(this.specie.films[key]).subscribe(data => {
+          this.films.push(Replace.format(data, this.api, "", true, true))
+        });
+      }
+      
+      this.swapiService.getPlanet(this.specie.homeworld).subscribe(data => {
+        this.planets.push(Replace.format(data, this.api, "", true, true))
+      });
+    
+
+      console.log(this.planets)
     });
   }
 
